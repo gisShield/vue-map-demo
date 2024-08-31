@@ -1,25 +1,36 @@
 <template>
   <div id="app">
-    <leftMenu class="left-div"></leftMenu>
-    <comment :is="newWinType" class="right-div"/>
+    <leftMenu class="left-div" :changeMenu="changeMenu"></leftMenu>
+    <component :is="newWinType" class="right-div" :mapKey="mapKey"/>
   </div>
 </template>
 
 <script>
 import leftMenu from "@/components/leftMenu";
 import dbAnalysis from "@/components/demos/ol/dbAnalysis";
+import exportMap from "@/components/demos/ol/exportMap";
+import mapFilter from "@/components/demos/ol/mapFilter";
 
 export default {
   name: 'App',
   components: {
     leftMenu,
-    dbAnalysis
+    dbAnalysis,
+    exportMap,
+    mapFilter
   },
   data(){
     return{
-      newWinType:'dbAnalysis'
+      newWinType:"mapFilter",
+      mapKey:''
+    }
+  },
+  methods:{
+    changeMenu(name){
+      this.newWinType = name
     }
   }
+
 }
 </script>
 
